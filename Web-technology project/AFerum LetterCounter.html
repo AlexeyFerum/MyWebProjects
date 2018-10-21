@@ -1,0 +1,176 @@
+<html>
+	<head>
+		<script type="text/javascript" src="http://yandex.st/jquery/2.0.3/jquery.min.js"></script>
+		<title>LetterCounter</title>
+		<meta charset="utf-8">
+		<link rel="icon" href = "1.png">
+	
+		<style>
+		table 	{
+				width: 100%; /* Ширина таблицы */
+				color: white; /* Цвет текста */
+				border-spacing: 0px; /* Расстояние между ячейками */
+				}
+				td, th {
+				background: #f1f1f1; /* Цвет фона ячеек */
+				padding: 5px; /* Поля вокруг текста */
+				}
+				
+		.gist  	{
+				width: 100%; /* Ширина таблицы */
+				color: white; /* Цвет текста */
+				border-spacing: 0px; /* Расстояние между ячейками */
+				}
+				.td1, .th1 {
+				background: white; /* Цвет фона ячеек */
+				padding: 5px; /* Поля вокруг текста */
+				}
+			
+		.google {
+				font-size: 40px;
+				font-family: Futura;
+				margin-left: 15px;
+				}
+				
+		.lc 	{
+				color: #dd4b39;
+				font-size: 25px;
+				font-family: Futura;
+				margin-right: 10px;
+				}
+				
+		<!-- button	{
+				position: relative;
+				font-family: Times;
+				font-size: 17px; 
+				display: inline-block;
+				padding: 5px 15px;
+				width: 200px;
+				height: 40px;
+				background: #f4f4f4;
+				border: 1px solid #dbdbdb;
+				margin-left: 20px;
+				}
+		
+				button:hover { background: #f4f4f4; } /* при наведении курсора мышки */
+				button:active { background:  #ebebeb; } /* при нажатии */
+		 -->
+		.bt1 {
+				position: relative;
+				font-family: Times;
+				font-size: 17px;
+				color: white;
+				display: inline-block;
+				padding: 5px 15px;
+				width: 200px;
+				height: 40px;
+				background: #4c8efb;
+				border: 1px solid #2f5bb7;
+				margin-left: 30px;
+				}
+				.bt1:hover { background: #4c8efb; } /* при наведении курсора мышки */
+				.bt1:active { background: #357ae8; } /* при нажатии */
+				
+		<!-- .bt2 {
+				position: relative;
+				font-family: Times;
+				font-size: 17px;
+				color: white;
+				display: inline-block;
+				padding: 5px 15px;
+				width: 200px;
+				height: 40px;
+				background: #4c8efb;
+				border: 1px solid #2f5bb7;
+				margin-right: 20px;
+				}
+				.bt2:hover { background: #4c8efb; } /* при наведении курсора мышки */
+				.bt2:active { background: #357ae8; } /* при нажатии */ -->
+				
+		textarea {
+				<!-- position: relative; -->
+				font-family: Times;
+				font-size: 17px;
+				color: black;
+				<!-- margin-left: 20px; -->
+				border: 2px solid #dbdbdb;
+				<!-- width: 50%; -->
+				}
+		}
+		</style>
+		
+		<script src="https://www.google.com/jsapi"></script>
+		<script>
+			google.load("visualization", "1", {packages:["corechart"]});
+			google.setOnLoadCallback(drawChart);
+			function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+			['', '', ''],
+			['А', 1.3, 70],
+			['Б', 2000, 3120],
+			['В', 12170, 9920]
+			]);
+			var options = {
+			title: 'Частота использования букв в тексте',
+			hAxis: {title: 'Буквы'},
+			vAxis: {title: 'Частота'}
+			};
+			var chart = new google.visualization.ColumnChart(document.getElementById('oil'));
+			chart.draw(data, options);
+		}
+		</script>
+	</head>
+	
+<body>
+	<table>
+		<tr><th align = "left"><font class = "google"><font color = "#4285f4">A<font color = "#ea4335">F<font color = "#fbbc05">e<font color = "#4285f4">r<font color = "#34a853">u<font color = "#ea4335">m</th>
+			<th align = "right"><font class = "lc">LetterCounter</th>
+		</tr>
+	</table>
+	
+	</br>
+	
+	<!-- <button id="loadBtn" ><b>Загрузить из файла</b></button> -->
+	
+	<button class="bt1" id="ImplementBtn"><b>Найти</b></button>
+	<!-- <button class="bt2" id="EnrtopyBtn"><b>Энтропия</b></button> -->
+	
+	</br>
+	</br>
+	
+	<table class = "gist">
+		<tr> <th class = "th1"> <textarea name="txtar" value="" rows="25" cols="69" align="left"></textarea></th>
+			 <th class = "th1"> <div id = "placeholder"></div> <br> 
+			 <div id="oil" style="width: 500px; height: 400px;"></div> </th>
+		</tr>
+	</table>
+	
+<script type="text/javascript">
+
+// по окончанию загрузки страницы
+$(document).ready(function(){
+
+$('#ImplementBtn').click(function(){
+var txtar = document.getElementById("txtar").value;
+var d = {'txtar':txtar};
+
+$.ajax({
+url: 'AFL.php',
+
+data: d,
+
+type: "POST",
+
+dataType : "html",
+success: function (data){
+$('#placeholder').html(data);
+}
+})
+})
+});
+</script>
+
+
+	
+</body>
+</html>

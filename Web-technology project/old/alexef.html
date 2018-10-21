@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<script type="text/javascript" src="http://yandex.st/jquery/2.0.3/jquery.min.js"></script>
+		<title>LetterCounter</title>
+		<meta charset="utf-8">
+		<link rel="icon" href = "1.png">
+		
+		<style>
+			table 	{
+			width: 100%; /* Ўирина таблицы */
+			color: white; /* ÷вет текста */
+			border-spacing: 0px; /* –ассто€ние между €чейками */
+			}
+			td, th {
+			background: #f1f1f1; /* ÷вет фона €чеек */
+			padding: 5px; /* ѕол€ вокруг текста */
+			}
+			
+			.google {
+			font-size: 40px;
+			font-family: Futura;
+			margin-left: 15px;
+			}
+			
+			.lc 	{
+			color: #dd4b39;
+			font-size: 25px;
+			font-family: Futura;
+			margin-right: 10px;
+			}
+			
+			button	{
+			position: relative;
+			font-family: Times;
+			font-size: 17px; 
+			display: inline-block;
+			padding: 5px 15px;
+			width: 200px;
+			height: 40px;
+			background: #f4f4f4;
+			border: 1px solid #dbdbdb;
+			margin-left: 20px;
+			}
+			
+			button:hover { background: #f4f4f4; } /* при наведении курсора мышки */
+			button:active { background:  #ebebeb; } /* при нажатии */
+			
+			.bt1 {
+			position: relative;
+			font-family: Times;
+			font-size: 17px;
+			color: white;
+			display: inline-block;
+			padding: 5px 15px;
+			width: 200px;
+			height: 40px;
+			background: #4c8efb;
+			border: 1px solid #2f5bb7;
+			margin-left: 590px;
+			}
+			.bt1:hover { background: #4c8efb; } /* при наведении курсора мышки */
+			.bt1:active { background: #357ae8; } /* при нажатии */
+			
+			.bt2 {
+			position: relative;
+			font-family: Times;
+			font-size: 17px;
+			color: white;
+			display: inline-block;
+			padding: 5px 15px;
+			width: 200px;
+			height: 40px;
+			background: #4c8efb;
+			border: 1px solid #2f5bb7;
+			margin-right: 20px;
+			}
+			.bt2:hover { background: #4c8efb; } /* при наведении курсора мышки */
+			.bt2:active { background: #357ae8; } /* при нажатии */
+			
+			textarea {
+			position: relative;
+			font-family: Times;
+			font-size: 17px;
+			color: black;
+			position: relative;
+			margin-left: 20px;
+			border: 2px solid #dbdbdb;
+			}
+			}
+		</style>
+	</head>
+	
+	<body>
+		<table>
+			<tr><th align = "left"><font class = "google"><font color = "#4285f4">A<font color = "#ea4335">F<font color = "#fbbc05">e<font color = "#4285f4">r<font color = "#34a853">u<font color = "#ea4335">m</th>
+				<th align = "right"><font class = "lc">LetterCounter</th>
+				</tr>
+			</table>
+			
+			</br>
+			
+			<button id="loadBtn" ><b>Загрузить из файла</b></button>
+			
+			<button class="bt1" id="GistoBtn"><b>Гистограмма</b></button>
+			<button class="bt2" id="EnrtopyBtn"><b>Энтропия</b></button>
+			
+			</br>
+			</br>
+			
+			<div id = "placeholder"></div>
+			<textarea id="txtar" value="" rows="25" cols="69" align="left">
+				
+			</textarea>
+			
+			
+			<script type="text/javascript">
+				
+				// по окончанию загрузки страницы
+				$(document).ready(function(){
+					
+					$('#GistoBtn').click(function(){
+						var txtar = document.getElementById("txtar").value;
+						var d = {'txtar':txtar};
+						
+						$.ajax({
+							url: 'alexefHandler.php',
+							
+							data: d,
+							
+							type: "POST",
+							
+							dataType : "html",
+							success: function (data){
+								$('#placeholder').html(data);
+							}
+						})
+					})
+				});
+			</script>
+			
+			</body>
+			</html>						
